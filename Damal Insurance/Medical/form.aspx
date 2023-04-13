@@ -1,10 +1,8 @@
-﻿<%@ Page Title="Individual Proposer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Individual.aspx.cs" Inherits="Damal_Insurance.Medical_Insurance.Individual" %>
-
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="form.aspx.cs" Inherits="Damal_Insurance.Medical.form" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="headPlaceholder" runat="server">
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!--Container Main start-->
-    <div style="margin-top: 23px;" class="container">
+    <div style="margin-top: 200px;" class="container">
         <form style="margin-top: 135px; margin-left: 25px;" class="common" id="insurance-form">
             <div class="step">
                 <h2>Step 1: Personal Information</h2>
@@ -169,11 +167,4 @@
             </div>
         </form>
     </div>
-    <!--Container Main end-->
-</asp:Content>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="headPlaceholder" runat="server">
-    
-
-    
 </asp:Content>

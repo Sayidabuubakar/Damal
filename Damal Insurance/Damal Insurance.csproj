@@ -128,8 +128,11 @@
     <Content Include="img\a-01.png" />
     <Content Include="img\log.svg" />
     <Content Include="img\register.svg" />
+    <Content Include="Individual.aspx" />
+    <Content Include="JavaScript.js" />
     <Content Include="Logo.png" />
-    <Content Include="Medical\Individual.aspx" />
+    <Content Include="Medical\form.aspx" />
+    <Content Include="personal.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -221,12 +224,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Medical\Individual.aspx.cs">
+    <Compile Include="Individual.aspx.cs">
       <DependentUpon>Individual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Medical\Individual.aspx.designer.cs">
+    <Compile Include="Individual.aspx.designer.cs">
       <DependentUpon>Individual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medical\form.aspx.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medical\form.aspx.designer.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="personal.aspx.cs">
+      <DependentUpon>personal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="personal.aspx.designer.cs">
+      <DependentUpon>personal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignIn.aspx.cs">

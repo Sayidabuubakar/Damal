@@ -23,11 +23,99 @@
     <asp:ContentPlaceHolder ID="headPlaceholder" runat="server"></asp:ContentPlaceHolder>
 
     <!-- Individual Page Style -->
+
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function onButtonClick(s, e) {
+            var indexTab = (pageControl.GetActiveTab()).index;
+
+            var tabName = (pageControl.GetActiveTab()).name;
+            if (ASPxClientEdit.ValidateGroup('group' + tabName))
+                pageControl.SetActiveTab(pageControl.GetTab(indexTab + 1));
+
+        }
+        function onFinishClick(s, e) {
+            if (ASPxClientEdit.ValidateGroup('groupTabContact')) {
+                var str = '<b>Personal Info:</b><br />' + txtFirstName.GetValue() + '<br />' + txtLastName.GetValue() + '<hr />';
+                str += '<b>Date Info:</b><br />' + getShortDate(deAnyDate.GetValue().toString()) + '<br />' + cbStates.GetValue() + '<hr />';
+                str += '<b>Contact Info:</b><br />' + txtEmail.GetValue();
+                popupControl.SetContentHtml(str);
+                popupControl.ShowAtElement(pageControl.GetMainElement());
+                popupControl.UpdatePositionAtElement(pageControl.GetMainElement());
+
+                var progressBar = ASPxClientControl.GetControlCollection().GetByName("progressBar" + pageControl.GetActiveTabIndex());
+                progressBar.SetPosition(100);
+                updateLastTabContent(true);
+            }
+        }
+
+        function updateLastTabContent(isVisible) {
+            panel.SetVisible(!isVisible);
+            repeatButton.SetVisible(isVisible);
+        }
+
+        function onActiveTabChanged(s, e) {
+            var tabIndex = s.GetActiveTabIndex();
+            var tabCount = s.GetTabCount();
+            var progressBar = ASPxClientControl.GetControlCollection().GetByName("progressBar" + tabIndex);
+            progressBar.SetPosition(100 * tabIndex / tabCount);
+
+        }
+
+        const group1 = "groupTabPersonal";
+        const group2 = "groupTabDate";
+        const group3 = "groupTabContact";
+
+        function onTabClick(s, e) {
+            var group = null;
+            var activeTabIndex = s.GetActiveTabIndex();
+            if (e.tab.index < activeTabIndex)
+                return;
+
+            if (activeTabIndex == 0) {
+                group = group1;
+            } else if (activeTabIndex == 1) {
+                group = group2;
+            } else if (activeTabIndex == 2) {
+                group = group3;
+            }
+            e.cancel = !ASPxClientEdit.ValidateGroup(group);
+        }
+
+        function onRepeatButtonClick(s, e) {
+            var container = pageControl.GetMainElement();
+            ASPxClientEdit.ClearEditorsInContainer(container, group1, true);
+            ASPxClientEdit.ClearEditorsInContainer(container, group2, true);
+            ASPxClientEdit.ClearEditorsInContainer(container, group3, true);
+            updateLastTabContent(false);
+            pageControl.SetActiveTabIndex(0);
+            popupControl.Hide();
+        }
+
+        function getShortDate(longDate) {
+            var date = new Date(longDate);
+            var month = date.getMonth() + 1;
+            var str = month.toString() + '/' + date.getDate().toString() + '/' + date.getFullYear().toString();
+            return str;
+        }
+    </script>
+  
+    <style>
+       
+        .center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
     <style>
         .step {
             display: none;
         }
-
+          table thead tr {
+        display: table-row;
+    }
             .step:first-child {
                 display: block;
             }
@@ -65,7 +153,7 @@
 
                     <div class="nav_list">
                         <a href="Index.html" class="nav_link active"><i class='bx bx-grid-alt nav_icon'></i><span
-                            class="nav_name">Dashboard</span> </a><a href="Medical/Individual.aspx" class="nav_link"><i
+                            class="nav_name">Dashboard</span> </a><a href="Individual.aspx" class="nav_link"><i
                                 class='bx bx-user nav_icon'></i>
                                 <span class="nav_name">Policy</span> </a><a href="#" class="nav_link"><i
                                     class='bx bx-message-square-detail nav_icon'></i><span class="nav_name">Messages</span> </a><a
@@ -82,6 +170,16 @@
         </asp:ContentPlaceHolder>
     </form>
 </body>
+      <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+
+       <script>
+           $(document).ready(function () {
+               $('.dataTable1').DataTable();
+           });
+       </script>
+
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
     <script type='text/javascript' src='#'></script>
     <script type='text/javascript' src='#'></script>
@@ -171,5 +269,8 @@
             });
         });
 
+
 </script>
+
+
 </html>
